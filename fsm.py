@@ -4,14 +4,18 @@ def bikin_flat(l: list[list]):
     return [item for sublist in l for item in sublist]
 
 
+# referensi => https://stackoverflow.com/questions/35272592/how-are-finite-automata-implemented-in-code/35279645
+
 def accepts(transisi: dict[int, dict[str, int]], node_inisial: int, node_penerima: list[int], input_string: str):
     node = node_inisial
-    for c in input_string:
+    print(f"Mulai tracing string '{input_string}': ")
+    for idx, c in enumerate(input_string):
+        print(f"=> M(q{node}, {input_string[idx:]})")
         if c not in bikin_flat([transisi[x].keys() for x in transisi.keys()]):
-            return f"String '{input_string}' TIDAK DITERIMA (alasan: terminal '{c}' tidak ada dalam kamus pada DFA ini)"
+            return f"String '{input_string}' TIDAK DITERIMA (alasan: terminal '{c}' tidak ada dalam kamus pada DFA ini)\n"
 
         node = transisi[node][c]
-    return f"String '{input_string}' DITERIMA" if node in node_penerima else f"String '{input_string}' TIDAK DITERIMA (alasan: node q{node} bukan node penerima)"
+    return f"String '{input_string}' DITERIMA\n" if node in node_penerima else f"String '{input_string}' TIDAK DITERIMA (alasan: node q{node} bukan node penerima)\n"
 
 
 # soal 2
