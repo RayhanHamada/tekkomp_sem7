@@ -1,12 +1,12 @@
 
 
-def bikin_flat(l: list[list]):
+def bikin_flat(l):
     return [item for sublist in l for item in sublist]
 
 
 # referensi => https://stackoverflow.com/questions/35272592/how-are-finite-automata-implemented-in-code/35279645
 
-def accepts(transisi: dict[int, dict[str, int]], node_inisial: int, node_penerima: list[int], input_string: str):
+def accepts(transisi, node_inisial, node_penerima, input_string):
     node = node_inisial
     print(f"Mulai tracing string '{input_string}': ")
     for idx, c in enumerate(input_string):
